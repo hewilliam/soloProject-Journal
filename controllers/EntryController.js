@@ -23,7 +23,6 @@ const EntryController = {
     },
 
     updateEntry(req, res) {
-        console.log(req)
         Entry.findByIdAndUpdate(req.params.entry, { title: req.body.title, body: req.body.body /*date?*/ }, function (err) {
             if (err) throw err;
             res.send('Success');
