@@ -12,10 +12,18 @@ mongoose.connection.once('open', () => {
     console.log('Connected to Database');
 });
 
+app.use((request, response, next) => {
+    // allow your API to respond to requests from anywhere, not just from your own computer
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  response.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PATCH, DELETE");
+  next();
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', entryController.getAllEntrys);
+app.get('/allentry', entryController.getAllEntrys);
 
 app.post('/post', entryController.createEntry);
 

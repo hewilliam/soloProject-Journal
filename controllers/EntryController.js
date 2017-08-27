@@ -9,9 +9,9 @@ const EntryController = {
             body: req.body.body,
         })
 
-        newEntry.save(function (err) {
+        newEntry.save(function (err, data) {
             if (err) throw err;
-            res.send('Success');
+            res.send(data);
         })
     },
 
@@ -23,16 +23,16 @@ const EntryController = {
     },
 
     updateEntry(req, res) {
-        Entry.findByIdAndUpdate(req.params.entry, { title: req.body.title, body: req.body.body /*date?*/ }, function (err) {
+        Entry.findByIdAndUpdate(req.params.entry, { title: req.body.title, body: req.body.body /*date?*/ }, function (err, data) {
             if (err) throw err;
-            res.send('Success');
+            res.send(data);
         })
     },
 
     deleteEntry(req, res) {
-        Entry.findByIdAndRemove(req.params.entry, function (err) {
+        Entry.findByIdAndRemove(req.params.entry, function (err, data) {
             if (err) throw err;
-            res.send('Success');
+            res.send(data);
         })
     }
 
